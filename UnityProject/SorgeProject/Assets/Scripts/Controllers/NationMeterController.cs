@@ -24,6 +24,16 @@ public class NationMeterController : MonoBehaviour
     [SerializeField]
     Sprite[] trustMeterSprites = new Sprite[5];
 
+    [SerializeField]
+    Image alphaPowerGauge, betaPowerGauge, alphaMoralGauge, betaMoralGauge;
+
+    [SerializeField]
+    Color originColor;
+    [SerializeField]
+    Color upColor;
+    [SerializeField]
+    Color downColor;
+
     const float TRUST_MIN = 0;
     const float TRUST_MAX = 100;
 
@@ -64,10 +74,10 @@ public class NationMeterController : MonoBehaviour
                 switch(eNation)
                 {
                     case NATION_NAME.ALPHA:
-                        SetSliderValue(alphaMoralSlider, value);
+                        SetSliderValue(alphaMoralSlider, alphaMoralGauge, value);
                         break;
                     case NATION_NAME.BETA:
-                        SetSliderValue(betaMoralSlider, value);
+                        SetSliderValue(betaMoralSlider, betaMoralGauge, value);
                         break;
                 }
                 break;
@@ -75,10 +85,10 @@ public class NationMeterController : MonoBehaviour
                 switch (eNation)
                 {
                     case NATION_NAME.ALPHA:
-                        SetSliderValue(alphaPowerSlider, value);
+                        SetSliderValue(alphaPowerSlider, alphaPowerGauge, value);
                         break;
                     case NATION_NAME.BETA:
-                        SetSliderValue(betaPowerSlider, value); ;
+                        SetSliderValue(betaPowerSlider, betaPowerGauge, value); ;
                         break;
                 }
                 break;
@@ -96,12 +106,42 @@ public class NationMeterController : MonoBehaviour
         }
     }
 
-    void SetSliderValue(Slider sliderToSet, float value)
+    void SetSliderValue(Slider sliderToSet, Image gaugeToSet, float value)
     {
         if (sliderToSet)
         {
+            var prev = sliderToSet.value;
             sliderToSet.value = value;
+            if (prev != value) StartCoroutine(GaugeColorAnimation(gaugeToSet, prev < value ? upColor : downColor));
         }
+    }
+
+    IEnumerator GaugeColorAnimation(Image gaugeToSet, Color tint)
+    {
+        float fadeTime = 0.3f;
+        float keepTime = 1.5f;
+
+        float timer = fadeTime;
+        Color prev = gaugeToSet.color;
+        while(timer > 0)
+        {
+            float t = 1f - timer / fadeTime;
+            gaugeToSet.color = Color.Lerp(prev, tint, t);
+            yield return null;
+            timer -= Time.deltaTime;
+        }
+
+        yield return new WaitForSeconds(keepTime);
+
+        timer = fadeTime;
+        while (timer > 0)
+        {
+            float t = 1f - timer / fadeTime;
+            gaugeToSet.color = Color.Lerp(tint, originColor, t);
+            yield return null;
+            timer -= Time.deltaTime;
+        }
+        gaugeToSet.color = originColor;
     }
 
     void SetImageSprite(Image imageToSet, float value)

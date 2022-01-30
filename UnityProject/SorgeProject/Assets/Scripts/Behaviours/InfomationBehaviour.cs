@@ -9,6 +9,7 @@ using SorgeProject.Data;
 
 namespace SorgeProject.Object
 {
+    [RequireComponent(typeof(AudioSource))]
     public class InfomationBehaviour : Draggable
     {
         float FadeAwayTime = 1.0f;
@@ -21,6 +22,10 @@ namespace SorgeProject.Object
         [SerializeField] Image informationColorTap;
         [SerializeField] Color alphaniaColor, betalandColor, nuetralColor;
         [SerializeField] float colorTransitionTime = 10.0f;
+
+        AudioSource audioSource;
+        [SerializeField] AudioClip pickClip, dropClip, destroyClip, purchaseFailClip;
+        public string flavorString { get; private set; }
 
         public float LifeTime { get; private set; }
 
@@ -66,6 +71,8 @@ namespace SorgeProject.Object
                 }
                 StartFadeAwayAndDestroy(CanvasGroup, FadeAwayTime);
             }
+            audioSource.clip = dropClip;
+            audioSource.Play();
         }
 
         public void SetData(InfoData data, float lifeTime, NATION_NAME nation_name)
@@ -77,13 +84,14 @@ namespace SorgeProject.Object
 
             Cost = data.price;
 
-            SellCost = (int) Mathf.Round((float)Cost * (data.profit + 1f));
+            SellCost = (int) Mathf.Round(Mathf.Max((float)Cost, 10f)  * (data.profit + 1f));
 
             Power = data.power;
             Moral = data.moral;
             Trust = data.trust;
 
             Title = data.title;
+            flavorString = data.flavor;
 
             EventId = data.event_id;
 
@@ -132,6 +140,8 @@ namespace SorgeProject.Object
                 CanvasGroup.interactable = false;
                 CanvasGroup.blocksRaycasts = false;
                 StartCoroutine(FadeAwayAndDestroy(CanvasGroup, FadeAwayTime));
+                audioSource.clip = destroyClip;
+                audioSource.Play();
             }
         }
 
@@ -152,7 +162,7 @@ namespace SorgeProject.Object
                 yield return null;
             }
 
-            Destroy(this);
+            GameObject.Destroy(gameObject);
         }
 
         void StartColorTransition()
@@ -202,6 +212,24 @@ namespace SorgeProject.Object
                     informationColorTap.color = nuetralColor;
                     break;
             }
+        }
+
+        private void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        public override void OnBeginDrag(PointerEventData eventData)
+        {
+            base.OnBeginDrag(eventData);
+            audioSource.clip = pickClip;
+            audioSource.Play();
+        }
+
+        public void OnPurchaseFailed()
+        {
+            audioSource.clip = purchaseFailClip;
+            audioSource.Play();
         }
     }
 }

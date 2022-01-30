@@ -28,7 +28,9 @@ namespace SorgeProject.Object
         {
             if (draggable is InfomationBehaviour infomation)
             {
-                return infomations.Contains(infomation) || PlayerDataConroller.Instance.IsPurchasable(infomation);
+                bool result = infomations.Contains(infomation) || PlayerDataConroller.Instance.IsPurchasable(infomation);
+                if (!result) infomation.OnPurchaseFailed();
+                return result;
             }
             return false;
         }

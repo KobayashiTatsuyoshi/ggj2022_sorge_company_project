@@ -41,7 +41,7 @@ namespace SorgeProject.Data
                 case "profit":
                     profit = float.Parse(value);
                     return;
-                case "fravor":
+                case "flavor":
                     flavor = value;
                     return;
                 case "class":

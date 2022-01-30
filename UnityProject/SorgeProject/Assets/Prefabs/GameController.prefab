@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 226453267}
   - component: {fileID: 1470362333}
   - component: {fileID: 978728118}
+  - component: {fileID: 7704308763037281488}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -129,3 +130,96 @@ MonoBehaviour:
   eventPrefab: {fileID: 7288525259761682951, guid: 7db8fe06701dc274abad0d3fdd1d27bc,
     type: 3}
   eventRoot: {fileID: 0}
+  eventStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7704308763037281488}
+        m_MethodName: StartChangeBGM
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7704308763037281488}
+        m_MethodName: PlayEventStartSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  eventCleared:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7704308763037281488}
+        m_MethodName: StartChangeBGM
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7704308763037281488}
+        m_MethodName: PlayEventEndSE
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  eventFailed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7704308763037281488}
+        m_MethodName: StartChangeBGM
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7704308763037281488}
+        m_MethodName: PlayEventStartSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7704308763037281488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7805157272208093601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6de3cc211676147a4d3fb12f2132f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalBgmClip: {fileID: 8300000, guid: 3e3bb516cd3a71844b67b0b545e45763, type: 3}
+  eventBgmClip: {fileID: 8300000, guid: c5b22261cfdfa7841a2afc403ad5d2ca, type: 3}
+  eventClearClip: {fileID: 8300000, guid: 7c1e99ca831dca8458a9626002cb7c88, type: 3}
+  eventFailClip: {fileID: 8300000, guid: 65e19defd9e616b4f875122fbaf1dce0, type: 3}
+  eventStartClip: {fileID: 8300000, guid: a154f27f3ca3e8f4c8fdfdd3ddee353a, type: 3}
+  bgmFadeTime: 1

@@ -12,6 +12,7 @@ namespace SorgeProject.View
         [SerializeField] Text trustValue;
         [SerializeField] Text profitValue;
         [SerializeField] Text costValue;
+        [SerializeField] Text flavor;
 
         public void SetData(Object.InfomationBehaviour behaviour)
         {
@@ -21,7 +22,8 @@ namespace SorgeProject.View
             moralValue.text = behaviour.Moral.ToString();
             trustValue.text = behaviour.Trust.ToString();
             profitValue.text = behaviour.SellCost.ToString();
-            costValue.text = behaviour.Cost.ToString();
+            costValue.text = "$" + behaviour.Cost.ToString();
+            flavor.text = behaviour.flavorString;
         }
     }
 }

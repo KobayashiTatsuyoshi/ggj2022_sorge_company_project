@@ -12,7 +12,7 @@ public class PlayTimeBehaviour : MonoBehaviour
         {
             var init = new DateTime(1900, 1, 1);
             var date = init.AddDays(value);
-            m_text.text = $"{date.Hour:00}.{date.Month:00}.{date.Day:00}";
+            m_text.text = $"{date.Year % 100:00}.{date.Month:00}.{date.Day:00}";
         }
     }
 }

@@ -3,6 +3,7 @@ using SorgeProject.Util;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SorgeProject.Controller
 {
@@ -17,6 +18,10 @@ namespace SorgeProject.Controller
 
         Coroutine currentEventTimer;
         Coroutine nextEventTimer;
+
+        public UnityEvent eventStarted;
+        public UnityEvent eventCleared;
+        public UnityEvent eventFailed;
 
         public bool IsInitialized { get => eventDatas != null; }
 
@@ -74,6 +79,7 @@ namespace SorgeProject.Controller
             eventInstance = Instantiate(eventPrefab, eventRoot);
             eventInstance.SetData(currentData.title, currentData.flavor);
             eventInstance.Pop();
+            eventStarted.Invoke();
         }
 
         public void RemoveEvent()
@@ -86,6 +92,7 @@ namespace SorgeProject.Controller
             eventInstance.Destroy();
             eventInstance = null;
             currentData = null;
+            eventFailed.Invoke();
         }
 
         public void ClearEvent(NATION_NAME target)
@@ -97,6 +104,7 @@ namespace SorgeProject.Controller
             eventInstance.Destroy();
             eventInstance = null;
             currentData = null;
+            eventCleared.Invoke();
         }
 
         public void CheckEventClear(int event_id, NATION_NAME receive)

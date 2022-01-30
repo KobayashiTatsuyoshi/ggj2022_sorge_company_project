@@ -30,7 +30,7 @@ namespace SorgeProject.Util
             Parent = dropable;
         }
 
-        public void OnBeginDrag(PointerEventData eventData)
+        virtual public void OnBeginDrag(PointerEventData eventData)
         {
             if (Parent != null) Parent.OnExit(this);
             CanvasGroup.blocksRaycasts = false;
@@ -42,7 +42,7 @@ namespace SorgeProject.Util
             transform.position = eventData.position;
         }
 
-        public void OnEndDrag(PointerEventData eventData)
+        virtual public void OnEndDrag(PointerEventData eventData)
         {
             CanvasGroup.blocksRaycasts = true;
             var dropObject = eventData.pointerEnter;

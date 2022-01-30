@@ -29,7 +29,12 @@ namespace SorgeProject.Object
             if (draggable is InfomationBehaviour infomation)
             {
                 if (infomation.NationName == this.Name) return false;
-                if (!infomation.IsHand) return Controller.PlayerDataConroller.Instance.IsPurchasable(infomation);
+                if (!infomation.IsHand)
+                {
+                    bool result = Controller.PlayerDataConroller.Instance.IsPurchasable(infomation);
+                    if (!result) infomation.OnPurchaseFailed();
+                    return result;
+                }
                 else return true;
             }
             return false;
