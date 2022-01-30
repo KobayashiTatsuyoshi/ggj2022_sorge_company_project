@@ -157,6 +157,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 879319609824502697, guid: 75c45a8f5e50d734b83b72f2a7597844,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: cbe4bfc489434fb4cb9c2a4cd653f25e,
+        type: 3}
+    - target: {fileID: 915379848081871282, guid: 75c45a8f5e50d734b83b72f2a7597844,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: cbe4bfc489434fb4cb9c2a4cd653f25e,
+        type: 3}
     - target: {fileID: 1061867277940034705, guid: 75c45a8f5e50d734b83b72f2a7597844,
         type: 3}
       propertyPath: m_AnchorMax.x
